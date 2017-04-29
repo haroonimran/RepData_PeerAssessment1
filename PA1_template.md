@@ -20,7 +20,33 @@ data_noNA <- data[!is.na(data$'steps'),]
 
 #using an SQL style query to create a dataframe containing average steps per day by date.
 library(sqldf)
+```
+
+```
+## Loading required package: gsubfn
+```
+
+```
+## Loading required package: proto
+```
+
+```
+## Loading required package: RSQLite
+```
+
+```
+## Loading required package: DBI
+```
+
+```r
 total_steps_perday <- sqldf("select sum(steps),date from data_noNA group by date")
+```
+
+```
+## Loading required package: tcltk
+```
+
+```r
 colnames(total_steps_perday) <- c("steps","date")
 #The total number of steps per day is:
 total_steps_perday
@@ -88,6 +114,13 @@ total_steps_perday
 
 ```r
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.3.2
+```
+
+```r
 ggplot(data=total_steps_perday) + geom_histogram(mapping = aes(x= steps))
 ```
 
@@ -248,7 +281,7 @@ ggplot(data=total_steps_imputed) + geom_histogram(mapping = aes(x= steps))
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-![plot of chunk Histogram with imputed values](figure/Histogram with imputed values-1.png)
+![plot of chunk Histogram_imputed](figure/Histogram_imputed-1.png)
 
 ## 5. Are there differences in activity patterns between weekdays and weekends?
 5.1 Create a new factor variable in the dataset with two levels weekdays and weekends indicating whether a given date is a weekday or weekend day.
@@ -291,4 +324,4 @@ colnames(plot1) <- c("steps","interval","weekday")
 ggplot(plot1, aes(as.numeric(interval), steps)) + geom_line() + ylab("Avg. no. of Steps") + xlab("interval") + facet_wrap(~weekday, nrow = 2)
 ```
 
-![plot of chunk time series](figure/time series-1.png)
+![plot of chunk timeseries2](figure/timeseries2-1.png)

@@ -81,7 +81,7 @@ reconstructed <- rbind(data_noNA,replace_NAs_final1)
 ```
 
 4.4 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-```{r Histogram with imputed values}
+```{r Histogram_imputed}
 library(ggplot2)
 library(sqldf)
 total_steps_imputed <- sqldf("select sum(steps),date from reconstructed group by date")
@@ -112,7 +112,7 @@ weekdays$weekday <- sapply(as.Date(weekdays$date), function(t) return_weekday(t)
 weekdays$steps <- as.numeric(weekdays$steps) #updating the weekday derived, into the data frame
 ```
 5.2 Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
-```{r time series}
+```{r timeseries2}
 library(ggplot2)
 library(sqldf)
 plot1 <- sqldf("select avg(steps),interval, weekday from weekdays group by interval, weekday")
